@@ -197,7 +197,7 @@ function App() {
                 setIsSending(true);
                 console.log("data", formData);
                 const response = await axios.post(
-                  "https://mosaic-maker.onrender.com  /process-my-image",
+                  "https://mosaic-maker.onrender.com/process-my-image",
                   formData,
                 );
                 setIsSending(true);
