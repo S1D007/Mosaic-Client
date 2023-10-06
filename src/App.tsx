@@ -197,7 +197,7 @@ function App() {
                 setIsSending(true);
                 console.log("data", formData);
                 const response = await axios.post(
-                  "https://gokapture-digital-mosaic-backend-env.eba-edyt79ku.ap-south-1.elasticbeanstalk.com/process-my-image",
+                  "https://65.0.124.85.nip.io/process-my-image",
                   formData,
                 );
                 setIsSending(true);
