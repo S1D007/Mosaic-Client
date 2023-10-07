@@ -67,7 +67,7 @@ function App() {
       }}
     >
       <img style={{
-        width:'50px'
+        width:'250px'
       }} src="https://res.cloudinary.com/dxjk4gnrw/image/upload/v1696646110/Elite_Logo_cqclxt.png" />
       {/* <video
           ref={videoRef}
