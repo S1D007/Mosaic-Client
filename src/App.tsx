@@ -66,7 +66,9 @@ function App() {
         gap: 20,
       }}
     >
-      <img src="https://res.cloudinary.com/dxjk4gnrw/image/upload/v1696646110/Elite_Logo_cqclxt.png" />
+      <img style={{
+        width:'50px'
+      }} src="https://res.cloudinary.com/dxjk4gnrw/image/upload/v1696646110/Elite_Logo_cqclxt.png" />
       {/* <video
           ref={videoRef}
           autoPlay
