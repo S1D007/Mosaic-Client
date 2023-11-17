@@ -95,15 +95,14 @@ function App() {
       )}
       {!capturedImage && (
         <>
-          {/* <p>Click on Capture to take a picture</p> */}
-          <Webcam
+            <Webcam
             style={{
               borderRadius: 18,
               maxHeight: 300,
             }}
             videoConstraints={{
               facingMode: "user",
-              aspectRatio: 1 / 1,
+              aspectRatio: 16 / 9,
             }}
             audio={false}
             ref={webcamRef}
@@ -197,7 +196,7 @@ function App() {
                 setIsSending(true);
                 console.log("data", formData);
                 const response = await axios.post(
-                  "https://65.0.5.193.nip.io/process-my-image",
+                  "http://localhost:3000/process-my-image",
                   formData,
                 );
                 setIsSending(true);
