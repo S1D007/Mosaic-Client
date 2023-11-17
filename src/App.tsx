@@ -68,7 +68,7 @@ function App() {
     >
       <img style={{
         width:'250px'
-      }} src="https://res.cloudinary.com/dxjk4gnrw/image/upload/v1696646110/Elite_Logo_cqclxt.png" />
+      }} src="https://res.cloudinary.com/dxjk4gnrw/image/upload/v1700216972/arcadis-logo-freelogovectors.net_-1_rcd9cm.jpg" />
       {/* <video
           ref={videoRef}
           autoPlay
