@@ -104,7 +104,7 @@ function App() {
             }}
             videoConstraints={{
               facingMode: "user",
-              aspectRatio: 16 / 9,
+              aspectRatio: 1 / 1,
             }}
             audio={false}
             ref={webcamRef}
