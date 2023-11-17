@@ -198,7 +198,7 @@ function App() {
                 setIsSending(true);
                 console.log("data", formData);
                 const response = await axios.post(
-                  "http://localhost:3000/process-my-image",
+                  "https://65.0.5.193.nip.io/process-my-image",
                   formData,
                 );
                 setIsSending(true);
