@@ -19,6 +19,15 @@ function App() {
   // const [formData] = useState(new FormData());
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [facingMode, setFacingMode] = useState("user"); // Default facing mode
+
+  // Function to toggle between user and environment facing mode
+  const toggleFacingMode = () => {
+    setFacingMode((prevFacingMode) =>
+    prevFacingMode === "user" ? "environment" : "user"
+    );
+  };
+  console.log(facingMode)
   const captureImage = async () => {
     if (webcamRef.current === null) return;
     const imageSrc = webcamRef.current.getScreenshot();
@@ -103,7 +112,7 @@ function App() {
               maxHeight: 300,
             }}
             videoConstraints={{
-              facingMode: "user",
+              facingMode,
               aspectRatio: 1 / 1,
             }}
             audio={false}
@@ -128,6 +137,22 @@ function App() {
           >
             Capture
           </button>
+          <button
+        onClick={toggleFacingMode}
+        style={{
+          borderRadius: 18,
+          backgroundColor: "#fff",
+          color: "#000",
+          padding: "10px 20px",
+          fontSize: 18,
+          fontWeight: "bold",
+          border: "2px solid #000",
+          cursor: "pointer",
+          marginTop: 20,
+        }}
+      >
+        Switch Camera
+      </button>
         </>
       )}
       
