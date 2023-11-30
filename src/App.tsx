@@ -223,7 +223,7 @@ function App() {
                 setIsSending(true);
                 console.log("data", formData);
                 const response = await axios.post(
-                  "https://3.108.238.222.nip.io/process-my-image",
+                  "https://mosaic-api.gokapturehub.com/process-my-image",
                   formData,
                 );
                 setIsSending(true);
