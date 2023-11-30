@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
+import logo from "./assets/Hafele Logo.png"
 const dataURItoBlob = (dataURI: string): Blob => {
   const byteString = window.atob(dataURI.split(",")[1]);
   const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
@@ -77,7 +78,7 @@ function App() {
     >
       <img style={{
         width:'250px'
-      }} src="https://res.cloudinary.com/dxjk4gnrw/image/upload/v1700216972/arcadis-logo-freelogovectors.net_-1_rcd9cm.jpg" />
+      }} src={logo} />
       {/* <video
           ref={videoRef}
           autoPlay
