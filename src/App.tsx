@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
-import logo from "./assets/Hafele Logo.png"
+import logo from "./assets/temenos.png"
 const dataURItoBlob = (dataURI: string): Blob => {
   const byteString = window.atob(dataURI.split(",")[1]);
   const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
