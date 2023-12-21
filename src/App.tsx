@@ -213,7 +213,8 @@ function App() {
                 // borderColor: "#000",
               }}
               onClick={async () => {
-                const formData = new FormData();
+                try{
+                  const formData = new FormData();
                 // the captured image is a blob data and i want to add buffer of it in form data
                 // const base64Image = capturedImage.split(",")[1];
                 const image = dataURItoBlob(capturedImage);
@@ -231,6 +232,11 @@ function App() {
                 if (response) {
                   setIsSent(true);
                   setIsSending(false);
+                }
+              }catch(err){
+                
+                setIsSent(true);
+                setIsSending(false);
                 }
               }}
             >
