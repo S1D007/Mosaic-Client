@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
-import logo from "./assets/image.png";
+// import logo from "./assets/image.png";
 
 const dataURItoBlob = (dataURI: string): Blob => {
   const byteString = window.atob(dataURI.split(",")[1]);
