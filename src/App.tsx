@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
-import logo from "./assets/image.png"
+import logo from "./assets/image.png";
+
 const dataURItoBlob = (dataURI: string): Blob => {
   const byteString = window.atob(dataURI.split(",")[1]);
   const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
@@ -16,7 +17,7 @@ const dataURItoBlob = (dataURI: string): Blob => {
 };
 function App() {
   const webcamRef = useRef<any>(null);
-  const [capturedImage, setCapturedImage] = useState<any>('');
+  const [capturedImage, setCapturedImage] = useState<any>("");
   // const [formData] = useState(new FormData());
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
@@ -25,16 +26,13 @@ function App() {
   // Function to toggle between user and environment facing mode
   const toggleFacingMode = () => {
     setFacingMode((prevFacingMode) =>
-    prevFacingMode === "user" ? "environment" : "user"
+      prevFacingMode === "user" ? "environment" : "user"
     );
   };
-  console.log(facingMode)
+
   const captureImage = async () => {
     if (webcamRef.current === null) return;
     const imageSrc = webcamRef.current.getScreenshot();
-    // console.log("imageSrc", imageSrc);
-    // const canvas = await html2canvas(webcamRef.current.video);
-    // const imageUrl = canvas.toDataURL("image/png");
     setCapturedImage(imageSrc);
   };
   // const videoConstraints = {
@@ -62,6 +60,13 @@ function App() {
   //       );
   //     });
   // });
+  const handleFileUpload = async (e: any) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const imageSrc = URL.createObjectURL(file);
+      setCapturedImage(imageSrc);
+    }
+  };
 
   return (
     <div
@@ -76,9 +81,12 @@ function App() {
         gap: 20,
       }}
     >
-      <img style={{
-        width:'250px'
-      }} src={logo} />
+      <img
+        style={{
+          width: "250px",
+        }}
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png"
+      />
       {/* <video
           ref={videoRef}
           autoPlay
@@ -107,7 +115,7 @@ function App() {
       )}
       {!capturedImage && (
         <>
-            <Webcam
+          <Webcam
             style={{
               borderRadius: 18,
               maxHeight: 300,
@@ -139,25 +147,38 @@ function App() {
             Capture
           </button>
           <button
-        onClick={toggleFacingMode}
-        style={{
-          borderRadius: 18,
-          backgroundColor: "#fff",
-          color: "#000",
-          padding: "10px 20px",
-          fontSize: 18,
-          fontWeight: "bold",
-          border: "2px solid #000",
-          cursor: "pointer",
-          marginTop: 20,
-        }}
-      >
-        Switch Camera
-      </button>
+            onClick={toggleFacingMode}
+            style={{
+              borderRadius: 18,
+              backgroundColor: "#fff",
+              color: "#000",
+              padding: "10px 20px",
+              fontSize: 18,
+              fontWeight: "bold",
+              border: "2px solid #000",
+              cursor: "pointer",
+              marginTop: 20,
+            }}
+          >
+            Switch Camera
+          </button>
+          <label
+            htmlFor="imageUploadInput"
+            className="mt-4 py-2 px-4 bg-gray-700 text-white rounded-3xl text-xl font-semibold relative overflow-hidden cursor-pointer"
+          >
+            Upload Image
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileUpload}
+            className="hidden"
+            id="imageUploadInput"
+          />
         </>
       )}
-      
-      {capturedImage  && !isSending && !isSent && (
+
+      {capturedImage && !isSending && !isSent && (
         <>
           <img
             src={capturedImage}
@@ -213,30 +234,29 @@ function App() {
                 // borderColor: "#000",
               }}
               onClick={async () => {
-                try{
+                try {
                   const formData = new FormData();
-                // the captured image is a blob data and i want to add buffer of it in form data
-                // const base64Image = capturedImage.split(",")[1];
-                const image = dataURItoBlob(capturedImage);
-                console.log("image", image);
-                // const binaryData = atob(base64Image);
-                formData.append("image", image);
-                // const data = new Uint8Array([...binaryData].map((char) => char.charCodeAt(0)));
-                setIsSending(true);
-                console.log("data", formData);
-                const response = await axios.post(
-                  "https://mosaic-api.gokapturehub.com/process-my-image",
-                  formData,
-                );
-                setIsSending(true);
-                if (response) {
+                  // the captured image is a blob data and i want to add buffer of it in form data
+                  // const base64Image = capturedImage.split(",")[1];
+                  const image = dataURItoBlob(capturedImage);
+                  console.log("image", image);
+                  // const binaryData = atob(base64Image);
+                  formData.append("image", image);
+                  // const data = new Uint8Array([...binaryData].map((char) => char.charCodeAt(0)));
+                  setIsSending(true);
+                  console.log("data", formData);
+                  const response = await axios.post(
+                    "https://mosaic-api.gokapturehub.com/process-my-image",
+                    formData
+                  );
+                  setIsSending(true);
+                  if (response) {
+                    setIsSent(true);
+                    setIsSending(false);
+                  }
+                } catch (err) {
                   setIsSent(true);
                   setIsSending(false);
-                }
-              }catch(err){
-                
-                setIsSent(true);
-                setIsSending(false);
                 }
               }}
             >
