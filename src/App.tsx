@@ -69,24 +69,34 @@ function App() {
       image.onload = () => {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-  
+
         const squareSize = Math.min(image.width, image.height);
         canvas.width = squareSize;
         canvas.height = squareSize;
-  
-        const xOffset = image.width > image.height ? (image.width - squareSize) / 2 : 0;
-        const yOffset = image.height > image.width ? (image.height - squareSize) / 2 : 0;
-  
+
+        const xOffset =
+          image.width > image.height ? (image.width - squareSize) / 2 : 0;
+        const yOffset =
+          image.height > image.width ? (image.height - squareSize) / 2 : 0;
+
         if (ctx) {
-          ctx.drawImage(image, xOffset, yOffset, squareSize, squareSize, 0, 0, squareSize, squareSize);
+          ctx.drawImage(
+            image,
+            xOffset,
+            yOffset,
+            squareSize,
+            squareSize,
+            0,
+            0,
+            squareSize,
+            squareSize
+          );
           const dataUrl = canvas.toDataURL("image/jpeg", 1);
           setCapturedImage(dataUrl);
         }
       };
     }
   };
-  
-  
 
   return (
     <div
@@ -126,12 +136,35 @@ function App() {
         />
       )}
       {isSent && (
-        <img
-          style={{
-            height: 200,
-          }}
-          src="https://cdnl.iconscout.com/lottie/premium/thumb/sending-completed-8025404-6410148.gif"
-        />
+        <div className='flex flex-col space-y-5' >
+          <img
+            style={{
+              height: 200,
+            }}
+            src="https://cdnl.iconscout.com/lottie/premium/thumb/sending-completed-8025404-6410148.gif"
+          />
+          <button
+            style={{
+              borderRadius: 18,
+              backgroundColor: "#000",
+              color: "#fff",
+              paddingLeft: 15,
+              paddingRight: 15,
+              paddingTop: 10,
+              paddingBottom: 10,
+              fontSize: 25,
+              fontWeight: "bold",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              setCapturedImage(null);
+              setIsSent(false);
+            }}
+          >
+            Retry Image?
+          </button>
+        </div>
       )}
       {!capturedImage && (
         <>
