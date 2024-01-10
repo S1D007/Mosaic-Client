@@ -64,9 +64,29 @@ function App() {
     const file = e.target.files?.[0];
     if (file) {
       const imageSrc = URL.createObjectURL(file);
-      setCapturedImage(imageSrc);
+      const image = new Image();
+      image.src = imageSrc;
+      image.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+  
+        const squareSize = Math.min(image.width, image.height);
+        canvas.width = squareSize;
+        canvas.height = squareSize;
+  
+        const xOffset = image.width > image.height ? (image.width - squareSize) / 2 : 0;
+        const yOffset = image.height > image.width ? (image.height - squareSize) / 2 : 0;
+  
+        if (ctx) {
+          ctx.drawImage(image, xOffset, yOffset, squareSize, squareSize, 0, 0, squareSize, squareSize);
+          const dataUrl = canvas.toDataURL("image/jpeg", 1);
+          setCapturedImage(dataUrl);
+        }
+      };
     }
   };
+  
+  
 
   return (
     <div
