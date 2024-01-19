@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
-// import logo from "./assets/image.png";
+import logo from "./assets/image.png";
 
 const dataURItoBlob = (dataURI: string): Blob => {
   const byteString = window.atob(dataURI.split(",")[1]);
@@ -115,7 +115,7 @@ function App() {
         style={{
           width: "250px",
         }}
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/2560px-Cisco_logo_blue_2016.svg.png"
+        src={logo}
       />
       {/* <video
           ref={videoRef}
