@@ -1,0 +1,11 @@
+
+html, body {
+    /* add a bg image */
+    background-image: url('./assets/1_march_Mosaic_BG.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: white;
+    
+  } 

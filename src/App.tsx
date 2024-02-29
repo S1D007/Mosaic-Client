@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
-import logo from "./assets/image.png";
+import logo from "./assets/1_march_Mosaic_Logo.png";
 
 const dataURItoBlob = (dataURI: string): Blob => {
   const byteString = window.atob(dataURI.split(",")[1]);
@@ -113,7 +113,9 @@ function App() {
     >
       <img
         style={{
-          width: "250px",
+          width: "18rem",
+          height: '6rem',
+          // object-fit: cover
         }}
         src={logo}
       />
