@@ -111,14 +111,25 @@ function App() {
         gap: 20,
       }}
     >
-      <img
-        style={{
-          width: "18rem",
-          height: '6rem',
-          // object-fit: cover
-        }}
-        src={logo}
-      />
+      <div className="flex flex-col space-y-4">
+        <img
+          style={{
+            width: "18rem",
+            // height: "6rem",
+            // object-fit: cover
+          }}
+          src={"/logo_1.jpeg"}
+        />
+        <img
+          style={{
+            width: "18rem",
+            // height: "6rem",
+            // object-fit: cover
+          }}
+          src={"/logo_2.jpeg"}
+        />
+      </div>
+
       {/* <video
           ref={videoRef}
           autoPlay
@@ -138,7 +149,7 @@ function App() {
         />
       )}
       {isSent && (
-        <div className='flex flex-col space-y-5' >
+        <div className="flex flex-col space-y-5">
           <img
             style={{
               height: 200,
